@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Form />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Form from '@/components/Form/Form.vue';
+import './styles/variables.scss';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components: { Form }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+  *,
+  *:before,
+  *:after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font: var(--font);
+  }
+
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+
+  input[type='number'],
+  input[type="number"]:hover,
+  input[type="number"]:focus {
+    appearance: none;
+    -moz-appearance: textfield;
+  }
+
+  #app {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
 </style>
