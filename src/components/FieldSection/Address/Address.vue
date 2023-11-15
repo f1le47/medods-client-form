@@ -5,26 +5,32 @@
       <Input
         labelName="Индекс"
         placeholderText="Впишите индекс"
+        :validator="{indexValidator}"
       />
       <Input
         labelName="Страна"
         placeholderText="Впишите страну"
+        :validator="{countryValidator}"
       />
       <Input
         labelName="Область"
         placeholderText="Впишите область"
+        :validator="{regionValidator}"
       />
       <Input
         labelName="Город"
         placeholderText="Впишите город"
+        :validator="{cityValidator}"
       />
       <Input
         labelName="Улица"
         placeholderText="Впишите улицу"
+        :validator="{streetValidator}"
       />
       <Input
         labelName="Дом"
         placeholderText="Впишите дом"
+        :validator="{houseValidator}"
       />
     </div>
   </div>
@@ -32,10 +38,33 @@
 
 <script>
 import Input from '@/components/Input/Input.vue';
+import { required, numeric } from 'vuelidate/lib/validators';
+import lettersOnlyValidator from '@/assets/helpers/lettersOnlyValidator/lettersOnlyValidator';
 
 export default {
   name: 'addressBlock',
-  components: { Input }
+  components: { Input },
+  data: () => ({
+    indexValidator: {
+      numeric
+    },
+    countryValidator: {
+      lettersOnlyValidator
+    },
+    regionValidator: {
+      lettersOnlyValidator
+    },
+    cityValidator: {
+      required,
+      lettersOnlyValidator
+    },
+    streetValidator: {
+      lettersOnlyValidator
+    },
+    houseValidator: {
+      numeric
+    }
+  })
 }
 </script>
 

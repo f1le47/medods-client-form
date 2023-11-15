@@ -13,6 +13,7 @@ import Passport from './Passport/Passport.vue';
 
 export default {
   name: 'FieldSection',
+  // eslint-disable-next-line vue/no-unused-components
   components: { GeneralInfo, Address, Passport }
 }
 </script>
