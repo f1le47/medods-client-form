@@ -49,11 +49,13 @@
         labelName="Пол"
         placeholderText="Укажите пол"
         :options="['Мужской', 'Женский']"
+        :validator="{genderValidator}"
       />
       <Multiselect />
       <Select
         labelName="Лечащий врач"
         :options="['Иванов', 'Захаров', 'Чернышева']"
+        :validator="{attendingDoctorValidator}"
       />
       <Checkbox 
         labelName="Не отправлять СМС."
@@ -76,8 +78,7 @@ export default {
     surnameValidator: {
       required,
       $autoDirty: true,
-      lettersOnlyValidator: helpers.regex('lettersOnlyValidator', /^[a-zа-яё]+$/i
-)
+      lettersOnlyValidator: helpers.regex('lettersOnlyValidator', /^[a-zа-яё]+$/i)
     },
     nameValidator: {
       required,
@@ -105,7 +106,9 @@ export default {
     phoneValidator: {
       required,
       phoneNumberValidator: helpers.regex('phoneNumberValidator', /7([0-9]{10})/)
-    }
+    },
+    genderValidator: {},
+    attendingDoctorValidator: {}
   })
 }
 </script>

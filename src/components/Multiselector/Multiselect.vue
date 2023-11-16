@@ -109,6 +109,7 @@ export default {
 
       .selectGroups {
         position: absolute;
+        z-index: 3;
         top: 45px;
         display: flex;
         flex-direction: column;

@@ -38,8 +38,7 @@
 
 <script>
 import Input from '@/components/Input/Input.vue';
-import { required, numeric } from 'vuelidate/lib/validators';
-import lettersOnlyValidator from '@/assets/helpers/lettersOnlyValidator/lettersOnlyValidator';
+import { required, numeric, helpers } from 'vuelidate/lib/validators';
 
 export default {
   name: 'addressBlock',
@@ -49,17 +48,17 @@ export default {
       numeric
     },
     countryValidator: {
-      lettersOnlyValidator
+      lettersOnlyValidator: helpers.regex('lettersOnlyValidator', /^[a-zа-яё]+$/i)
     },
     regionValidator: {
-      lettersOnlyValidator
+      lettersOnlyValidator: helpers.regex('lettersOnlyValidator', /^[a-zа-яё]+$/i)
     },
     cityValidator: {
       required,
-      lettersOnlyValidator
+      lettersOnlyValidator: helpers.regex('lettersOnlyValidator', /^[a-zа-яё]+$/i)
     },
     streetValidator: {
-      lettersOnlyValidator
+      lettersOnlyValidator: helpers.regex('lettersOnlyValidator', /^[a-zа-яё]+$/i)
     },
     houseValidator: {
       numeric

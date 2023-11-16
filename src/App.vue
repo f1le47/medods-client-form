@@ -37,8 +37,10 @@ export default {
   }
 
   #app {
+    padding: 20px 0;
     text-align: center;
     display: flex;
     justify-content: center;
+    background: url(@/assets/imgs/bg.png);
   }
 </style>

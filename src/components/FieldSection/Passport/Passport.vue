@@ -6,6 +6,7 @@
         labelName="Тип документа"
         placeholderText="Укажите тип документа"
         :options="['Паспорт', 'Свидетельство о рождении', 'Водительское удостоверение']"
+        :validator="{typeOfDocumentValidaotr}"
       />
       <Input
         labelName="Серия"
@@ -40,6 +41,9 @@ export default {
   name: 'passportBlock',
   components: { Select, Input },
   data: () => ({
+    typeOfDocumentValidaotr: {
+      required
+    },
     seriesValidator: {
       numeric,
       minLength: minLength(4),
