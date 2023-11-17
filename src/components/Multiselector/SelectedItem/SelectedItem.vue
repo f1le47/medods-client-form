@@ -2,6 +2,7 @@
   <div 
     :class="$style['selectedItem']"
     @click="$emit('removeItem', item.toString())"
+    v-on:click="event => event.stopPropagation()"
   >
     <span>{{ item.toString() }}</span>
     <img :class="$style['cancel']" src="@/assets/imgs/cancel.svg" alt="x">

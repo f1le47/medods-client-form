@@ -58,6 +58,11 @@ export default {
       } else {
         this.isHasErrors = false;
       }
+    },
+    dataForwarding() {
+      this.$emit('hasErrors', {
+        hasErrors: this.isHasErrors
+      })
     }
   },
   props: {
@@ -71,6 +76,7 @@ export default {
   },
   updated() {
     this.checkErrors()
+    this.dataForwarding()
   }
 }
 </script>
@@ -124,7 +130,7 @@ export default {
       z-index: 10;
       & span {
         padding: 10px;
-        color: rgb(226, 32, 32);
+        color: var(--error-color);
         border-top: 2px solid var(--primary-color);
         &:first-child {
           border-top: none;

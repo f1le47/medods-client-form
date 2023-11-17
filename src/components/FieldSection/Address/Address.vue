@@ -6,31 +6,37 @@
         labelName="Индекс"
         placeholderText="Впишите индекс"
         :validator="{indexValidator}"
+        @hasErrors="indexHasErrors"
       />
       <Input
         labelName="Страна"
         placeholderText="Впишите страну"
         :validator="{countryValidator}"
+        @hasErrors="countryHasErrors"
       />
       <Input
         labelName="Область"
         placeholderText="Впишите область"
         :validator="{regionValidator}"
+        @hasErrors="regionHasErrors"
       />
       <Input
         labelName="Город"
         placeholderText="Впишите город"
         :validator="{cityValidator}"
+        @hasErrors="cityHasErrors"
       />
       <Input
         labelName="Улица"
         placeholderText="Впишите улицу"
         :validator="{streetValidator}"
+        @hasErrors="streetHasErrors"
       />
       <Input
         labelName="Дом"
         placeholderText="Впишите дом"
         :validator="{houseValidator}"
+        @hasErrors="houseHasErrors"
       />
     </div>
   </div>
@@ -62,8 +68,47 @@ export default {
     },
     houseValidator: {
       numeric
+    },
+    errors: {
+      index: false,
+      country: false,
+      region: false,
+      city: false,
+      street: false,
+      house: false
     }
-  })
+  }),
+  methods: {
+    indexHasErrors(data) {
+      this.errors.index = data.hasErrors
+      this.dataForwarding()
+    },
+    countryHasErrors(data) {
+      this.errors.country = data.hasErrors
+      this.dataForwarding()
+    },
+    regionHasErrors(data) {
+      this.errors.region = data.hasErrors
+      this.dataForwarding()
+    },
+    cityHasErrors(data) {
+      this.errors.city = data.hasErrors
+      this.dataForwarding()
+    },
+    streetHasErrors(data) {
+      this.errors.street = data.hasErrors
+      this.dataForwarding()
+    },
+    houseHasErrors(data) {
+      this.errors.house = data.hasErrors
+      this.dataForwarding()
+    },
+    dataForwarding() {
+      this.$emit('errors', {
+        hasErrors: this.errors.index || this.errors.country || this.errors.region || this.errors.city || this.errors.street || this.errors.house
+      })
+    }
+  },
 }
 </script>
 

@@ -1,8 +1,14 @@
 <template>
   <div :class="$style['container']">
-    <GeneralInfo />
-    <Address />
-    <Passport />
+    <GeneralInfo
+      @errors="generalInfoErrors"
+    />
+    <Address
+      @errors="addressErrors"
+    />
+    <Passport
+      @errors="passportErrors"
+    />
   </div>
 </template>
 
@@ -13,7 +19,31 @@ import Passport from './Passport/Passport.vue';
 
 export default {
   name: 'FieldSection',
-  components: { GeneralInfo, Address, Passport }
+  components: { GeneralInfo, Address, Passport },
+  data: () => ({
+    generalInfoHasErrors: false,
+    addressHasErrors: false,
+    passportHasErrors: false,
+  }),
+  methods: {
+    generalInfoErrors(data) {
+      this.generalInfoHasErrors = data.hasErrors
+      this.dataForwarding()
+    },
+    addressErrors(data) {
+      this.addressHasErrors = data.hasErrors
+      this.dataForwarding()
+    },
+    passportErrors(data) {
+      this.passportHasErrors = data.hasErrors
+      this.dataForwarding()
+    },
+    dataForwarding() {
+      this.$emit('errors', {
+        hasErrors: this.generalInfoHasErrors || this.addressHasErrors || this.passportHasErrors
+      })
+    }
+  }
 }
 </script>
 

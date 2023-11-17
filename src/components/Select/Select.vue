@@ -3,7 +3,6 @@
     <span :class="$style['selectName']">{{ labelName }}</span>
     <div :class="$style['inputBlock']">
       <select
-
         name="value"
         id="gender"
         :class="$style['select']"
@@ -24,6 +23,15 @@
           {{ option }}
         </option>
       </select>
+      <div 
+        :class="$style['markdown']"
+      >
+        <img
+          src="@/assets/imgs/markdown.svg"
+          alt="v"
+          :class="$style['markdown__img']"
+        >
+      </div>
       <img
         src="@/assets/imgs/warning.svg"
         alt="!"
@@ -61,6 +69,11 @@ export default {
         this.isHasErrors = false;
       }
     },
+    dataForwarding() {
+      this.$emit('hasErrors', {
+        hasErrors: this.hasErrors
+      })
+    }
   },
   props: {
     placeholderText: String,
@@ -76,6 +89,7 @@ export default {
   },
   updated() {
     this.checkErrors()
+    this.dataForwarding()
   }
 }
 </script>
@@ -101,17 +115,29 @@ export default {
       border: none;
       border-radius: 5px;
       width: 100%;
+      appearance: none;
+      overflow: hidden;
+      cursor: pointer;
       &:focus {
         border: none;
         outline: none;
       }
     }
 
+    .markdown {
+      padding: 5px 5px;
+      position: absolute;
+      right: 0;
+      top: 0px;
+      height: 40px;
+      border-left: 1px solid var(--light-additional-color);
+    }
+    
     .error__img {
       position: absolute;
       width: 20px;
       top: 10px;
-      right: 30px;
+      right: 50px;
     }
 
     .errorAlert {
@@ -128,7 +154,7 @@ export default {
       z-index: 2;
       & span {
         padding: 10px;
-        color: rgb(226, 32, 32);
+        color: var(--error-color);
         border-top: 2px solid var(--primary-color);
         &:first-child {
           border-top: none;
